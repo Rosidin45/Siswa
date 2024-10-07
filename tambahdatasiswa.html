@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <h1>Menambah data pelanggan</h1>
+  <h1>Menambah data siswa</h1>
 
   <form class="mb-3">
     <div class="mb-3">
@@ -21,7 +21,7 @@
       <input type="text" class="form-control" id="inputnama" />
     </div>
     <div class="mb-3">
-      <label class="form-label">notelpon</label>
+      <label class="form-label">datasiswa</label>
       <input type="text" class="form-control" id="inputalamat" />
     </div>
     <div class="mb-3">
@@ -29,10 +29,10 @@
     </div>
   </form>
 
-  <a href="index.html">Kembali ke daftar pelanggan</a>
+  <a href="index.html">Kembali ke daftar siswa</a>
 
   <script type="module">
-    import { tambahpelanggan} from './main.js';
+    import { tambahsiswa} from './main.js';
 
     $(document).ready(async function() {
       // ketika tombol tambah di pencet
@@ -43,7 +43,7 @@
         let nama = $('#inputnama').val()
         let alamat = $('#inputnotelpon').val()
 
-        await tambahpelanggan(nama, notelpon)
+        await tambahsiswa(nama, siswa)
         window.location.href = 'index.html'
       });
     });

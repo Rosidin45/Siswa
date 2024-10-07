@@ -26,8 +26,8 @@ const firebaseConfig = {
 const aplikasi = initializeApp(firebaseConfig)
 const basisdata = getFirestore(aplikasi)
 
-export async function ambildatapelanggan() {
-  const refDokumen = collection(basisdata, "pelanggan");
+export async function ambildatasiswa() {
+  const refDokumen = collection(basisdata, "siswa");
   const kueri = query(refDokumen, orderBy("nama"));
   const cuplikanKueri = await getDocs(kueri);
 
@@ -36,19 +36,19 @@ export async function ambildatapelanggan() {
     hasilKueri.push({
       id: dokumen.id,
       nama: dokumen.data().nama,
-      notelpon: dokumen.data().notelpon
+      siswa: dokumen.data().siswa
     })
   })
 
   return hasilKueri;
 }
 
-export async function tambahpelanggan(nama, notelpon) {
+export async function tambahpelanggan(nama, siswa) {
   try {
     // menyimpan data ke firebase
     const refDokumen = await addDoc(collection(basisdata, "pelanggan"), {
       nama: nama,
-      notelpon: notelpon
+      datasiswa: datasiswa
     })
 
     // menampilkan pesan berhasil
@@ -57,4 +57,8 @@ export async function tambahpelanggan(nama, notelpon) {
     // menampilkan pesan gagal
     console.log("gagal menyimpan data pelanggan")
   }
+}
+
+export async function hapusSiswa(id) {
+  await deleteDoc(doc(basisdata, "siswa", id))
 }
