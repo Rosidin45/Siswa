@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <h1>Menambah data siswa</h1>
+  <h1>Mengubah data siswa</h1>
 
   <form class="mb-3">
     <div class="mb-3">
@@ -33,14 +33,10 @@
 
   <script type="module">
     import { tambahsiswa} from './main.js';
-
+    
     $(document).ready(async function() {
-      const queryString = window. location.search
-      const parameter URL = new URLSearchParams (queryString)
-      const id = parameterURL.get('id')
-      const siswa = await ambilSiswa(id)
-
-      $("#inputnama").val(siswa.nama) {
+      // ketika tombol tambah di pencet
+      $('#tombolsimpan').click(async function(event) {
         event.preventDefault()
 
         // ambil data dari formulir
@@ -51,15 +47,6 @@
         window.location.href = 'index.html'
       });
     });
-    $("#tombolsimpan").click(async function (event) {
-      event.praventdefault()
-      
-      //simpan data siswa yang baru 
-      await ubhasiswa(id, $("#inputnama").val("#inputalamat"),val()) 
-      //kembali ke halaman daftar siswa 
-      window.location.href = "index.html"
-    }) 
-    }
   </script>
 </body>
 

@@ -61,4 +61,15 @@ export async function tambahpelanggan(nama, siswa) {
 
 export async function hapusSiswa(id) {
   await deleteDoc(doc(basisdata, "siswa", id))
+  
+}
+export async function ambilsiswa(id) {
+const refDokumen = await doc(basisdata, "siswa", id)
+const snapshotDokumen = await ambilsiswa(id) {
+  
+}
+}
+export async function fname(param) {
+
+await updateDoc(doc(basisdata, "siswa", id) ()
 }
