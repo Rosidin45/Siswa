@@ -26,8 +26,25 @@ const firebaseConfig = {
 const aplikasi = initializeApp(firebaseConfig)
 const basisdata = getFirestore(aplikasi)
 
-export async function ambildatasiswa() {
-  const refDokumen = collection(basisdata, "siswa");
+export async function tambahBuah(nama, warna, harga) {
+  try {
+    // menyimpan data ke firebase
+    const refDokumen = await addDoc(collection(basisdata, "buah"), {
+      nama: nama,
+      warna: warna,
+      harga: harga
+    })
+
+    // menampilkan pesan berhasil
+    console.log("berhasil menyimpan data buah")
+  } catch (error) {
+    // menampilkan pesan gagal
+    console.log("gagal menyimpan data buah")
+  }
+}
+
+export async function ambilDaftarBuah() {
+  const refDokumen = collection(basisdata, "buah");
   const kueri = query(refDokumen, orderBy("nama"));
   const cuplikanKueri = await getDocs(kueri);
 
@@ -36,40 +53,14 @@ export async function ambildatasiswa() {
     hasilKueri.push({
       id: dokumen.id,
       nama: dokumen.data().nama,
-      siswa: dokumen.data().siswa
+      warna: dokumen.data().warna,
+      harga: dokumen.data().harga
     })
   })
 
   return hasilKueri;
 }
 
-export async function tambahpelanggan(nama, siswa) {
-  try {
-    // menyimpan data ke firebase
-    const refDokumen = await addDoc(collection(basisdata, "pelanggan"), {
-      nama: nama,
-      datasiswa: datasiswa
-    })
-
-    // menampilkan pesan berhasil
-    console.log("berhasil menyimpan data pelanggan")
-  } catch (error) {
-    // menampilkan pesan gagal
-    console.log("gagal menyimpan data pelanggan")
-  }
-}
-
-export async function hapusSiswa(id) {
-  await deleteDoc(doc(basisdata, "siswa", id))
-  
-}
-export async function ambilsiswa(id) {
-const refDokumen = await doc(basisdata, "siswa", id)
-const snapshotDokumen = await ambilsiswa(id) {
-  
-}
-}
-export async function fname(param) {
-
-await updateDoc(doc(basisdata, "siswa", id) ()
+export async function hapusBuah(id) {
+  await deleteDoc(doc(basisdata, "buah", id))
 }
