@@ -26,53 +26,54 @@ const firebaseConfig = {
 const aplikasi = initializeApp(firebaseConfig)
 const basisdata = getFirestore(aplikasi)
 
-export async function tambahBuah(nama, warna, harga) {
+export async function tambahBuah(item, harga, jumlah) {
   try {
     // menyimpan data ke firebase
-    const refDokumen = await addDoc(collection(basisdata, "Buah"), {
-      nama: nama,
-      warna: warna,
-      harga: harga
+    const refDokumen = await addDoc(collection(basisdata, "inventory"), {
+      item: item,
+      harga: harga,
+      jumlah: jumlah, 
     })
 
     // menampilkan pesan berhasil
-    console.log("berhasil menyimpan data buah")
+    console.log("berhasil menyimpan data minuman")
   } catch (error) {
     // menampilkan pesan gagal
-    console.log("gagal menyimpan data buah")
+    console.log("gagal menyimpan minuman")
   }
 }
 
-export async function ambilDaftarBuah() {
-  const refDokumen = collection(basisdata, "Buah");
-  const kueri = query(refDokumen, orderBy("nama"));
+export async function ambilDaftarminuman() {
+  const refDokumen = collection(basisdata, "inventory");
+  const kueri = query(refDokumen, orderBy("item"));
   const cuplikanKueri = await getDocs(kueri);
 
   let hasilKueri = [];
   cuplikanKueri.forEach((dokumen) => {
     hasilKueri.push({
       id: dokumen.id,
-      nama: dokumen.data().nama,
-      warna: dokumen.data().warna,
-      harga: dokumen.data().harga
+      item: dokumen.data().item,
+      harga: dokumen.data().harga,
+      jumlah: dokumen.data().jumlah
     })
   })
 
   return hasilKueri;
 }
 
-export async function hapusBuah(id) {
-  await deleteDoc(doc(basisdata, "Buah", id))
+export async function hapusitem(id) {
+  await deleteDoc(doc(basisdata, "item", id))
 }
 
-export async function unahBuah(id, namabaru, warnabaru,hargabaru) {
+export async function ubahitem(id, itembaru, hargabaru, jumlahbaru) {
   await updateDoc(
-    doc(basisdata, "ubah",id), 
-    {nama:namabaru, warna: warnabaru, harga:hargabaru}
-    ) 
+    doc(basisdata, "item", id),
+    { item: itembaru, harga: hargabaru, jumlah: jumlahbaru }
+  )
 }
-export async function ambilBuah(id) {
-  const refDokumen = await doc(basisdata, "Buah", id)
+
+export async function ambilitem(id) {
+  const refDokumen = await doc(basisdata, "item", id)
   const snapshotDokumen = await getDoc(refDokumen)
   
   return await snapshotDokumen.data()
