@@ -12,45 +12,55 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
-<<body>
-  <h1>Formulir Tambah Buah</h1>
+<body>
+  <h1>Menambah data siswa</h1>
 
   <form class="mb-3">
     <div class="mb-3">
-      <label class="form-label">Nama Buah</label>
+      <label class="form-label">Nama</label>
       <input type="text" class="form-control" id="inputnama" />
     </div>
     <div class="mb-3">
-      <label class="form-label">Warna</label>
-      <input type="text" class="form-control" id="inputwarna" />
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Harga</label>
-      <input type="text" class="form-control" id="inputharga" />
+      <label class="form-label">datasiswa</label>
+      <input type="text" class="form-control" id="inputalamat" />
     </div>
     <div class="mb-3">
       <button class="btn btn-primary" id="tombolsimpan">Simpan</button>
     </div>
   </form>
 
+  <a href="index.html">Kembali ke daftar siswa</a>
+
   <script type="module">
-    import { tambahBuah } from './main.js';
+    import { tambahbuah} from './main.js';
 
     $(document).ready(async function() {
-      // ketika tombol tambah di pencet
-      $('#tombolsimpan').click(async function(event) {
+      const queryString = window. location.search
+      const parameter URL = new URLSearchParams (queryString)
+      const id = parameterURL.get('id')
+      const siswa = await ambilSiswa(id)
+
+      $("#inputnama").val(siswa.nama) {
         event.preventDefault()
+
         // ambil data dari formulir
         let nama = $('#inputnama').val()
-        let warna = $('#inputwarna').val()
-        let harga = $('#inputharga').val()
+        let alamat = $('#inputnotelpon').val()
 
-        await tambahBuah(nama, warna, harga)
+        await tambahsiswa(nama, siswa)
         window.location.href = 'index.html'
       });
     });
+    $("#tombolsimpan").click(async function (event) {
+      event.praventdefault()
+      
+      //simpan data siswa yang baru 
+      await ubhasiswa(id, $("#inputnama").val("#inputalamat"),val()) 
+      //kembali ke halaman daftar siswa 
+      window.location.href = "index.html"
+    }) 
+    }
   </script>
-
 </body>
 
 </html>

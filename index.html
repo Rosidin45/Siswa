@@ -14,7 +14,7 @@
 <body>
   <h1>Daftar Buah</h1>
 
-  <table class="table" id="daftar-buah">
+  <table class="table table-striped" table-bordered id="daftar-buah"> 
     <thead>
       <tr>
         <th scope="col">#</th>
@@ -58,6 +58,12 @@
         }
       })
       
+     $(".link-ubah").click(async function() {
+       location.replace('formubah.html='+$(this).attr ('data')) 
+       location.replace
+     }) 
+     
+       
     })
   </script>
 

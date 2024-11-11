@@ -32,22 +32,24 @@
   <a href="index.html">Kembali ke daftar siswa</a>
 
   <script type="module">
-    import { tambahsiswa} from './main.js';
+    import { ambilsiswa, } from './main.js';
 
     $(document).ready(async function() {
       const queryString = window. location.search
       const parameter URL = new URLSearchParams (queryString)
       const id = parameterURL.get('id')
-      const siswa = await ambilSiswa(id)
-
-      $("#inputnama").val(siswa.nama) {
-        event.preventDefault()
-
+      const siswa = await ambilBuah(id)
+      
+⇝    $("#inputnama").val(buah.nama)
+      $("#inputwarna").val(buah.warna)
+      $("#inputharga").val(buah.harga)
+      
+      
         // ambil data dari formulir
         let nama = $('#inputnama').val()
-        let alamat = $('#inputnotelpon').val()
+        let alamat = $('#inputalamat').val()
 
-        await tambahsiswa(nama, siswa)
+        await tambahbuah(nama, buah)
         window.location.href = 'index.html'
       });
     });
@@ -55,6 +57,7 @@
       event.praventdefault()
       
       //simpan data siswa yang baru 
+      await ubahbuah(id, nama, warna, harga)
       await ubhasiswa(id, $("#inputnama").val("#inputalamat"),val()) 
       //kembali ke halaman daftar siswa 
       window.location.href = "index.html"

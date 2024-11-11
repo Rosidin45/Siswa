@@ -29,7 +29,7 @@ const basisdata = getFirestore(aplikasi)
 export async function tambahBuah(nama, warna, harga) {
   try {
     // menyimpan data ke firebase
-    const refDokumen = await addDoc(collection(basisdata, "buah"), {
+    const refDokumen = await addDoc(collection(basisdata, "Buah"), {
       nama: nama,
       warna: warna,
       harga: harga
@@ -44,7 +44,7 @@ export async function tambahBuah(nama, warna, harga) {
 }
 
 export async function ambilDaftarBuah() {
-  const refDokumen = collection(basisdata, "buah");
+  const refDokumen = collection(basisdata, "Buah");
   const kueri = query(refDokumen, orderBy("nama"));
   const cuplikanKueri = await getDocs(kueri);
 
@@ -62,5 +62,18 @@ export async function ambilDaftarBuah() {
 }
 
 export async function hapusBuah(id) {
-  await deleteDoc(doc(basisdata, "buah", id))
+  await deleteDoc(doc(basisdata, "Buah", id))
+}
+
+export async function unahBuah(id, namabaru, warnabaru,hargabaru) {
+  await updateDoc(
+    doc(basisdata, "ubah",id), 
+    {nama:namabaru, warna: warnabaru, harga:hargabaru}
+    ) 
+}
+export async function ambilBuah(id) {
+  const refDokumen = await doc(basisdata, "Buah", id)
+  const snapshotDokumen = await getDoc(refDokumen)
+  
+  return await snapshotDokumen.data()
 }
