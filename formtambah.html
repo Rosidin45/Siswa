@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form Tambah minuman</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <h1>Formulir Tambah minuman</h1>
+
+  <form class="mb-3">
+    <div class="mb-3">
+      <label class="form-label">Item minuman</label>
+      <input type="text" class="form-control" id="inputitem" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Harga</label>
+      <input type="text" class="form-control" id="inputharga" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Jumlah</label>
+      <input type="text" class="form-control" id="inputjumlah" />
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary" id="tombolsimpan">Simpan</button>
+    </div>
+  </form>
+
+  <script type="module">
+    import { tambahminuman } from './main.js';
+
+    $(document).ready(async function() {
+      // ketika tombol tambah di pencet
+      $('#tombolsimpan').click(async function(event) {
+        event.preventDefault()
+
+        // membuat tombol ini jadi disabled
+        $(this).attr('disabled', 'disabled')
+
+        // ambil data dari formulir
+        let item = $('#inputitem').val()
+        let jumlah = $('#inputjumlah').val()
+        let harga = $('#inputharga').val()
+
+        await tambahminuman(item, harga, jumlah)
+        window.location.href = 'index.html'
+      });
+    });
+  </script>
+
+</body>
+
+</html>
